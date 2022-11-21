@@ -20,6 +20,7 @@ import { stores } from '../Constants/stores';
 const HomeScreen = ({ navigation }) => {
   const [appIsReady, setAppIsReady] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   useEffect(() => {
     navigation.setOptions({
@@ -80,29 +81,46 @@ const HomeScreen = ({ navigation }) => {
           }}
         />
         <TitleComponent title={`Get Notified ${'\n'} When we Launch`} />
-        <View style={styles.textInputContainer}>
-          <TextInput autoCompleteType="email" style={styles.textInput} />
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={styles.notifyButton}
-            onPress={async () => {
-              try {
-                await sendEmail(
-                  'ahmedreda152@gmail.com',
-                  'Hello',
-                  'Hello World',
-                ).then(() => {
-                  console.log('Your message was successfully sent!');
-                });
-              } catch (e) {
-                console.log(e);
-              }
-            }}
-          >
-            <Text style={styles.notifyButtonText}>Notify Me</Text>
-          </TouchableOpacity>
+        <View style={{ display: 'flex', flexDirection: 'column' }}>
+          <View style={styles.textInputContainer}>
+            <TextInput autoCompleteType="email" style={styles.textInput} />
+            <TouchableOpacity
+              activeOpacity={0.5}
+              style={styles.notifyButton}
+              onPress={async () => {
+                try {
+                  await sendEmail(
+                    'ahmedreda152@gmail.com',
+                    'Hello',
+                    'Hello World',
+                  ).then(() => {
+                    console.log('Your message was successfully sent!');
+                    setEmailSent(true);
+                  });
+                } catch (e) {
+                  console.log(e);
+                }
+              }}
+            >
+              <Text style={styles.notifyButtonText}>Notify Me</Text>
+            </TouchableOpacity>
+          </View>
+          {emailSent && (
+            <Text
+              style={{
+                fontWeight: '600',
+                fontSize: 12,
+                textAlign: 'center',
+                color: '#3B5998',
+              }}
+            >
+              Your email address has been received.
+            </Text>
+          )}
         </View>
-        <Text style={{ marginTop: 10 }}>Don’t worry, we won’t spam you :)</Text>
+        <Text style={{ marginTop: 10, fontSize: 12 }}>
+          Don’t worry, we won’t spam you :)
+        </Text>
         <Image
           style={styles.landingImage}
           source={require('../../assets/landing-image-1.png')}
