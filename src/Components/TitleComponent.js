@@ -8,7 +8,7 @@ const TitleComponent = ({ title }) => {
     <View>
       <View style={styles.comingSoon}>
         <View style={styles.divider} />
-        <Text>Coming Soon</Text>
+        <Text style={styles.comingText}>Coming Soon</Text>
       </View>
       <Text style={styles.title}>{title}</Text>
     </View>
