@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
   contactButtonText: {
     color: 'white',
     fontSize: 12,
-    fontFamily: 'Inter-Regular',
   },
 
   contactButtonIcon: {
@@ -47,7 +46,6 @@ export const styles = StyleSheet.create({
   },
   comingText: {
     fontSize: 12,
-    fontFamily: 'Inter-Regular',
     fontWeight: '500',
   },
   divider: {
